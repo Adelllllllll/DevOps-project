@@ -23,4 +23,6 @@ jobs:
           pip install pytest httpx
 
       - name: Run tests
-        run: PYTHONPATH=src pytest tests/
+        run: |
+          export PYTHONPATH=$GITHUB_WORKSPACE/src
+          pytest tests/
