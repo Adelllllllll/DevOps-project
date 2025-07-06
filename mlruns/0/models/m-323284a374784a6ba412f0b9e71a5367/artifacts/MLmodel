@@ -1,0 +1,22 @@
+artifact_path: file:///C:/Users/zadel/Desktop/Cours/ING2/devops%20mlops/Projet/mlruns/0/models/m-323284a374784a6ba412f0b9e71a5367/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.11.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.4.2
+mlflow_version: 3.1.1
+model_id: m-323284a374784a6ba412f0b9e71a5367
+model_size_bytes: 40799
+model_uuid: m-323284a374784a6ba412f0b9e71a5367
+prompts: null
+run_id: 58a1a72c04ad4cbfbeb25f8ff0b9a6a2
+utc_time_created: '2025-07-06 22:28:08.380836'

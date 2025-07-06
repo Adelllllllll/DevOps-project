@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/zadel/Desktop/Cours/ING2/devops%20mlops/Projet/mlruns/0/models/m-6a24e410b5fe4a12afa44c589ff207e7/artifacts
+creation_timestamp: 1751841198000
+experiment_id: '0'
+last_updated_timestamp: 1751841203719
+model_id: m-6a24e410b5fe4a12afa44c589ff207e7
+model_type: null
+name: model
+source_run_id: 3eabf736d3bf4212949d6b8cfc79844a
+status: 2
+status_message: null
