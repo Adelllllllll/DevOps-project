@@ -1,0 +1,36 @@
+# ❌ Dossiers temporaires et caches
+__pycache__/
+*.py[cod]
+*.log
+*.tmp
+*.DS_Store
+*.swp
+
+# ❌ Fichiers et dossiers créés automatiquement
+*.joblib
+*.pkl
+*.npy
+*.csv
+*.tsv
+*.xlsx
+
+# ✅ Ignore les données sauf les traces DVC
+data/*
+!data/raw/.gitignore
+!data/raw/*.dvc
+
+# ❌ Dossiers générés par MLflow
+mlruns/
+mlartifacts/
+
+# ❌ Cache de tests Pytest
+.pytest_cache/
+
+# ❌ Fichiers spécifiques à l'environnement local
+.env
+.env.*
+
+# ❌ Conda et pip env files inutiles
+*.yml
+*.yaml
+!requirements.txt
