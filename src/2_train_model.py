@@ -2,7 +2,7 @@ import joblib
 import mlflow
 import mlflow.sklearn
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
 
 print("🔹 Chargement des données...")
 X_train = joblib.load("data/processed/X_train.joblib")
@@ -13,8 +13,8 @@ y_test = joblib.load("data/processed/y_test.joblib")
 print(f"   -> X_train: {X_train.shape} | X_test: {X_test.shape}")
 print(f"   -> y_train: {len(y_train)} | y_test: {len(y_test)}")
 
-print("🔹 Entraînement du modèle LogisticRegression...")
-model = LogisticRegression(max_iter=1000)
+print("🔹 Entraînement du modèle LogisticRegression équilibré...")
+model = LogisticRegression(max_iter=1000, class_weight="balanced")
 model.fit(X_train, y_train)
 print("   -> Entraînement terminé.")
 
@@ -24,10 +24,12 @@ print("   -> Prédictions réalisées.")
 
 print("🔹 Calcul des métriques...")
 accuracy = accuracy_score(y_test, y_pred)
-f1 = f1_score(y_test, y_pred, average="weighted")         # Correction ici
-precision = precision_score(y_test, y_pred, average="weighted")
-recall = recall_score(y_test, y_pred, average="weighted")
+f1 = f1_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+
 print(f"   -> Accuracy: {accuracy:.3f} | F1: {f1:.3f} | Précision: {precision:.3f} | Rappel: {recall:.3f}")
+print("\n🔹 Rapport complet :\n", classification_report(y_test, y_pred))
 
 print("🔹 Tracking dans MLflow...")
 with mlflow.start_run():
@@ -41,8 +43,7 @@ with mlflow.start_run():
 
     # Log du modèle
     mlflow.sklearn.log_model(model, "model")
-    
-joblib.dump(model, "data/processed/model.joblib")
 
+joblib.dump(model, "data/processed/model.joblib")
 
 print(f"✅ Modèle entraîné et loggé dans MLFlow : acc={accuracy:.3f} | f1={f1:.3f}")
