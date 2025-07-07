@@ -13,50 +13,19 @@ Ce projet est une API capable de détecter si un avis produit est authentique ou
 - Suivi des expériences avec MLflow
 - Gestion des données avec DVC
 
-## 📁 Structure
+🔗 Liens du projet
+✅ Projet GitHub (code complet, CI/CD, structure MLOps)
+📂 Repo GitHub principal :
+👉 https://github.com/Adelllllllll/DevOps-project
 
-```
-├── data/
-├── src/
-├── frontend/
-├── tests/
-├── .github/workflows/
-├── requirements.txt
-├── dvc.yaml
-```
+🌐 Frontend (interface utilisateur)
+💻 Interface de détection des avis (hébergée sur Vercel) :
+👉 https://dev-ops-project-gold.vercel.app/
 
-## 🧪 Exécuter les tests
+🛠️ API FastAPI (endpoint de prédiction)
+🔧 API (hébergée sur Railway) :
+👉 https://devops-project-production.up.railway.app/
 
-```bash
-pytest
-```
-
-## 🐳 Docker
-
-Build et lancement :
-
-```bash
-docker build -t fake-review-api .
-docker run -p 8000:8000 fake-review-api
-```
-
-## 🌐 Accès API
-
-```bash
-POST http://localhost:8000/predict
-```
-
-Body (JSON) :
-```json
-{
-  "text": "Amazing product!",
-  "rating": 5,
-  "product_category": "Electronics"
-}
-```
-
-## 🔍 Source de données
-
-Dataset Kaggle avec 20k vrais avis et 20k générés : OR = Original (humains), CG = Computer-generated.
-
----
+🐳 DockerHub (image de l’API)
+📦 Image DockerHub :
+👉 https://hub.docker.com/r/adelllllllll/avis-fraud-api
