@@ -16,10 +16,10 @@ STOPWORDS = set(joblib.load("nltk_stopwords_en.joblib")) if os.path.exists("nltk
 # === Création de l'app FastAPI ===
 app = FastAPI(title="Fake Review Detection API")
 
-# === Autoriser les requêtes CORS (JS, localhost, Railway, Vercel, etc.) ===
+# === Autoriser les requêtes CORS ===
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 🔒 Remplace * par ["https://ton-site.com"] en prod
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
