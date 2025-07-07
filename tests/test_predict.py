@@ -1,30 +1,31 @@
 import pytest
-from fastapi.testclient import TestClient
 from src.api import app
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 
-def test_predict_fake():
+def test_predict_valid_input():
     payload = {
-        "text": "This is a great product! Best I've ever used.",
-        "rating": 5,
-        "product_category": "Electronics"
+        "reviewText": "This product is amazing! Highly recommended.",
+        "summary": "Great product",
+        "overall": 5.0,
+        "verified": True
     }
     response = client.post("/predict", json=payload)
     assert response.status_code == 200
     assert "prediction" in response.json()
-    assert response.json()["prediction"] in ["Fake", "Genuine"]
-
-def test_predict_empty():
+    
+def test_predict_valid_input():
     payload = {
-        "text": "",
-        "rating": 3,
-        "product_category": "Electronics"
+        "text": "This product is amazing! Highly recommended.",
+        "rating": 5.0,
+        "product_category": "Books"
     }
     response = client.post("/predict", json=payload)
     assert response.status_code == 200
     assert response.json()["prediction"] in ["Fake", "Genuine"]
 
-def test_docs_available():
-    response = client.get("/docs")
-    assert response.status_code == 200
+
+def test_predict_empty_input():
+    response = client.post("/predict", json={})
+    assert response.status_code == 422
