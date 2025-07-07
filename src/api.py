@@ -1,28 +1,37 @@
 import os
-from fastapi import FastAPI
-from pydantic import BaseModel
-import joblib
-from scipy.sparse import hstack
 import string
+import joblib
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from scipy.sparse import hstack
 
 # === Chargement des artefacts ===
 model = joblib.load("data/processed/model.joblib")
 tfidf = joblib.load("data/processed/tfidf_vectorizer.joblib")
 scaler = joblib.load("data/processed/rating_scaler.joblib")
 encoder = joblib.load("data/processed/category_encoder.joblib")
+STOPWORDS = set(joblib.load("nltk_stopwords_en.joblib")) if os.path.exists("nltk_stopwords_en.joblib") else set()
 
-# === App FastAPI ===
+# === Création de l'app FastAPI ===
 app = FastAPI(title="Fake Review Detection API")
 
-# === Schéma d'entrée ===
+# === Autoriser les requêtes CORS (JS, localhost, Railway, Vercel, etc.) ===
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 🔒 Remplace * par ["https://ton-site.com"] en prod
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# === Schéma des données d'entrée ===
 class ReviewRequest(BaseModel):
     text: str
     rating: float
-    product_category: str  # nom corrigé ici
+    product_category: str
 
-# === Nettoyage texte ===
-STOPWORDS = set(joblib.load("nltk_stopwords_en.joblib")) if os.path.exists("nltk_stopwords_en.joblib") else set()
-
+# === Fonction de nettoyage de texte ===
 def clean_text(text):
     text = text.lower()
     text = text.translate(str.maketrans('', '', string.punctuation))
@@ -31,7 +40,7 @@ def clean_text(text):
         tokens = [word for word in tokens if word not in STOPWORDS]
     return " ".join(tokens)
 
-# === Endpoint ===
+# === Endpoint de prédiction ===
 @app.post("/predict")
 def predict_review(data: ReviewRequest):
     clean = clean_text(data.text)
