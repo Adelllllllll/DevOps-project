@@ -16,4 +16,4 @@ COPY data/processed/ data/processed/
 EXPOSE 8000
 
 # Run API
-CMD ["uvicorn", "src.3_api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8000"]
