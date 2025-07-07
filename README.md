@@ -13,6 +13,29 @@ Ce projet est une API capable de détecter si un avis produit est authentique ou
 - Suivi des expériences avec MLflow
 - Gestion des données avec DVC
 
+Données CSV brutes
+        │
+        ▼
+(1) ▶ Prétraitement (1_preprocessing.py)
+        │    ↳ Enregistre : X_train, y_train, scaler, encoder, etc.
+        ▼
+(2) ▶ Entraînement (2_train_model.py)
+        │    ↳ Enregistre : modèle, métriques dans MLflow
+        ▼
+(3) ▶ API (api.py) ← charge les artefacts du modèle
+        ▲
+        │
+(4) ◀ Frontend ← appelle l’API `/predict` pour chaque avis
+        ▲
+        │
+(5) ▶ Tests ← assurent la validité du pipeline
+        ▼
+(6) ▶ CI/CD GitHub Actions (test.yml, docker-build.yml)
+        ▼
+(7) ▶ Déploiement (Railway + Vercel)
+
+
+
 🔗 Liens du projet
 ✅ Projet GitHub (code complet, CI/CD, structure MLOps)
 📂 Repo GitHub principal :
@@ -43,3 +66,6 @@ Badges :
 ![Docker Build](https://github.com/Adelllllllll/DevOps-project/actions/workflows/docker-build.yml/badge.svg)
 
 [![DockerHub](https://hub.docker.com/repository/docker/adellil/fake-review-api/general)
+
+
+
