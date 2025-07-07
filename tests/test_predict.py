@@ -1,6 +1,10 @@
 import pytest
 from src.api import app
 from fastapi.testclient import TestClient
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 
 client = TestClient(app)
 
@@ -14,7 +18,7 @@ def test_predict_valid_input():
     response = client.post("/predict", json=payload)
     assert response.status_code == 200
     assert "prediction" in response.json()
-    
+
 def test_predict_valid_input():
     payload = {
         "text": "This product is amazing! Highly recommended.",
