@@ -24,8 +24,22 @@ Ce projet est une API capable de détecter si un avis produit est authentique ou
 
 🛠️ API FastAPI (endpoint de prédiction)
 🔧 API (hébergée sur Railway) :
-👉 https://devops-project-production.up.railway.app/
+👉 https://devops-project-production.up.railway.app/docs
+
+proj : https://railway.com/project/73882206-bf89-45ec-88b3-5627c8ac059d?environmentId=5911fe59-e2af-45cd-a9e1-8fc355352545
+
+Model ML :
+mlflow ui
+http://127.0.0.1:5000/#/models/review-fraud-detector
 
 🐳 DockerHub (image de l’API)
 📦 Image DockerHub :
 👉 https://hub.docker.com/r/adelllllllll/avis-fraud-api
+
+
+Badges :
+
+![CI](https://github.com/Adelllllllll/DevOps-project/actions/workflows/test.yml/badge.svg)
+![Docker Build](https://github.com/Adelllllllll/DevOps-project/actions/workflows/docker-build.yml/badge.svg)
+
+[![DockerHub](https://hub.docker.com/repository/docker/adellil/fake-review-api/general)
