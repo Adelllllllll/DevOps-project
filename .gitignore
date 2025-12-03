@@ -6,13 +6,13 @@ __pycache__/
 *.DS_Store
 *.swp
 
-# ❌ Fichiers et dossiers créés automatiquement
+# Ignore tous les joblib sauf ceux du modèle
 *.joblib
-*.pkl
-*.npy
-*.csv
-*.tsv
-*.xlsx
+!data/processed/model.joblib
+!data/processed/tfidf_vectorizer.joblib
+!data/processed/category_encoder.joblib
+!data/processed/rating_scaler.joblib
+
 
 # ✅ Ignore les données sauf les traces DVC
 data/*

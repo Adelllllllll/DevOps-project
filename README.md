@@ -1,3 +1,5 @@
+
+
 # Fake Review Detection API 🚀
 
 Ce projet est une API capable de détecter si un avis produit est authentique ou généré automatiquement, à l’aide d’un modèle de machine learning.
@@ -43,10 +45,11 @@ Données CSV brutes
 
 🌐 Frontend (interface utilisateur)
 💻 Interface de détection des avis (hébergée sur Vercel) :
+/!\ L'API n'est plus hebergée  donc innutile /!\
 👉 https://dev-ops-project-gold.vercel.app/
 
 🛠️ API FastAPI (endpoint de prédiction)
-🔧 API (hébergée sur Railway) :
+🔧 API (hébergée sur Railway)  /!\ N'est plus hebergée /!\:
 👉 https://devops-project-production.up.railway.app/docs
 
 proj : https://railway.com/project/73882206-bf89-45ec-88b3-5627c8ac059d?environmentId=5911fe59-e2af-45cd-a9e1-8fc355352545
